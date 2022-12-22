@@ -1,0 +1,35 @@
+﻿<Properties StartupConfiguration="{EC547389-DA59-4D9D-AD2D-836A2A791AF4}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="currencyApp/Controllers/HomeController.cs">
+    <Files>
+      <File FileName="currencyApp/Controllers/HomeController.cs" Line="53" Column="23" />
+      <File FileName="currencyApp/Views/Home/Index.cshtml" />
+      <File FileName="currencyApp/appsettings.json" />
+      <File FileName="currencyApp/Program.cs" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="currencyApp" expanded="True">
+            <Node name="currencyApp" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="HomeController.cs" selected="True" />
+              </Node>
+              <Node name="Models" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Home" expanded="True" />
+              </Node>
+              <Node name="appsettings.json" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.currencyApp PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

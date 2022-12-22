@@ -1,0 +1,103 @@
+﻿<div class="row">
+    <div class="col-md-6">
+     <a href="/Home/Currency/1">   <button class="btn btn-primary" id="">Excel Report</button></a>
+        <div class="chart" id="EUR"></div>
+    </div>
+    <div class="col-md-6">
+        <a href="/Home/Currency/2"><button class="btn btn-primary" id="">Excel Report</button></a>
+            <div class="chart" id="USD"></div>
+</div>
+</div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+    getLastMonths("PieChart", "EUR");
+    getLastMonths("PieChart", "USD");
+
+    function getLastMonths(chartType, currency) {
+
+        if (currency == "EUR") {
+            var val = 1;
+        }
+        if (currency == "USD") {
+            var val = 2;
+        }
+
+    google.charts.load('current', {
+        packages: ['corechart']
+    }).then(function () {
+        $.ajax({
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json",
+            url: '@Url.Action("CurrencyChart", "Home")/' + val,
+            success: function (result) {
+                drawChart(result, currency);
+                }
+            });
+
+
+        function drawChart(result, currency) {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Ay');
+            data.addColumn('number', 'Sayı');
+
+            var dataArray = [];
+
+
+            if (currency == "EUR") {
+
+            $.each(result.jsonList, function (i, obj) {
+
+                console.log(obj.date)
+                var date = parseInt(obj.date)
+                dataArray.push([obj.date, parseFloat(obj.euroRate)]);
+                console.log(dataArray)
+            });
+            }
+
+            if (currency == "USD") {
+                $.each(result.jsonList, function (i, obj) {
+
+                    console.log(obj.date)
+                    var date = parseInt(obj.date)
+                    dataArray.push([obj.date, parseFloat(obj.euroRate)]);
+                    console.log(dataArray)
+                });
+            }
+
+
+            data.addRows(dataArray);
+
+            var chart_options = {
+                title: `${currency} Rate`,
+                is3D: true,
+                width:500,
+                height:500,
+                animation:{
+                    duration: 100,
+                    easing: 'out',
+                },
+                vAxis: {minValue:0, maxValue:0.1}
+
+            };
+
+
+            if (chartType == "AreaChart") {
+                var areachart = new google.visualization.AreaChart(document.getElementById(currency));
+                areachart.draw(data, chart_options);
+            }
+            else if (chartType == "ColumnChart") {
+                var columnChart = new google.visualization.ColumnChart(document.getElementById(currency));
+                columnChart.draw(data, chart_options)
+            }
+            else if (chartType == "PieChart") {
+                var pieChart = new google.visualization.PieChart(document.getElementById(currency));
+                pieChart.draw(data, chart_options)
+            }
+
+        }
+    });
+}
+</script>
